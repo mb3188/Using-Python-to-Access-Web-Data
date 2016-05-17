@@ -38,7 +38,7 @@
 import urllib
 from BeautifulSoup import *
 
-url = raw_input('Enter - ')
+url ='http://python-data.dr-chuck.net/known_by_Darren.html'
 html = urllib.urlopen(url).read()
 soup = BeautifulSoup(html)
 
@@ -46,3 +46,28 @@ soup = BeautifulSoup(html)
 tags = soup('a')
 for tag in tags:
     print tag.get('href', None)
+
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+ 
+position = 18
+count = 7
+ 
+url = 'http://python-data.dr-chuck.net/known_by_Darren.html'
+taglist = list()
+urllist = list()
+urllist.append(url)
+ 
+for i in range(count):
+    html = urlopen(urllist[-1])
+    soup = BeautifulSoup(html)
+    tags = soup('a')
+    taglist = list()
+    for tag in tags:
+        taglist.append(tag)
+    url = taglist[position].get('href', None)
+    print ('Retrieving: ', url)
+    urllist.append(url)
+print ('Last Url: ', urllist[-1])
+
+
